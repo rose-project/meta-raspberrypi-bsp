@@ -1,0 +1,39 @@
+#@TYPE: Machine
+#@NAME: Raspberry Pi common config
+
+#@DESCRIPTION: Common machine configuration for the Raspberry Pi 1 and 2
+
+
+MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
+
+EXTRA_IMAGEDEPENDS += "u-boot"
+
+IMAGE_FSTYPES += "tar.bz2"
+
+SERIAL_CONSOLE = "115200 ttyAMA0"
+
+KERNEL_IMAGETYPE = "uImage"
+KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
+
+UBOOT_SUFFIX = "bin"
+UBOOT_ENTRYPOINT = "0x80008000"
+UBOOT_LOADADDRESS = "0x80008000"
+
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
+PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
+
+PREFERRED_VERSION_linux-custom = "v4.0.4"
+
+MACHINE_FEATURES = " \
+    usbgadget \
+    usbhost \
+    keyboard \
+    vfat \
+    ext2 \
+    alsa \
+    bluetooth \
+    wifi \
+    sdio \
+    "
+
+IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX}"
