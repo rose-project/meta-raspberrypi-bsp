@@ -8,10 +8,10 @@
 # raspberrypi-bsp.cfg in the linux-yocto-custom subdir is just a
 # convenient place for adding random config fragments.
 
-kconf hardware raspberrypi1.cfg
+kconf hardware raspberrypi2.cfg
 
 # These are used by yocto-kernel to add config fragments and features.
 # Don't remove if you plan on using yocto-kernel with this BSP.
 
-kconf hardware raspberrypi1-user-config.cfg
-include raspberrypi1-user-patches.scc
+kconf hardware raspberrypi2-user-config.cfg
+include raspberrypi2-user-patches.scc
