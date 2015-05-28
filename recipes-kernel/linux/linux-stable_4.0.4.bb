@@ -1,7 +1,9 @@
 inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
-SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1;branch=${KBRANCH} "
+SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;bareclone=1;branch=${KBRANCH} \
+	file://0001-add-bcm2708-and-bcm2709-device-tree-config.patch \
+	"
 
 SRC_URI += "file://${KMACHINE}_defconfig "
 
