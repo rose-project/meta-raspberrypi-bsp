@@ -6,7 +6,7 @@
 
 MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
 
-EXTRA_IMAGEDEPENDS += "u-boot"
+EXTRA_IMAGEDEPENDS += "u-boot bcm-rpi-firmware"
 
 IMAGE_FSTYPES += "tar.bz2"
 
@@ -36,4 +36,4 @@ MACHINE_FEATURES = " \
     sdio \
     "
 
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX}"
+IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} uImage"
