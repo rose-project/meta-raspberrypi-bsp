@@ -36,4 +36,5 @@ MACHINE_FEATURES = " \
     sdio \
     "
 
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} uImage"
+# FIXME: devtree files
+IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} uImage bootcode.bin start.elf config.txt"

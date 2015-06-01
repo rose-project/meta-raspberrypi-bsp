@@ -17,6 +17,8 @@ PV = "20150530"
 
 S = "${WORKDIR}"
 
+inherit deploy
+
 RDEPENDS_${PN} = "rpi-config"
 DESCRIPTION = "Closed source binary files to help boot the ARM on the BCM2835."
 LICENSE = "Proprietary"
@@ -28,7 +30,8 @@ COMPATIBLE_MACHINE = "raspberrypi(1|2)"
 PR = "r1"
 
 do_deploy() {
-    cp ${S}/bootcode.bin ${DEPLOYDIR}/${PN}
-    echo "copy start.elf: ${S}/start.elf ${DEPLOYDIR}/${PN}" 
-    cp ${S}/start.elf ${DEPLOYDIR}/${PN}
+    cp ${S}/bootcode.bin ${DEPLOYDIR}/
+    cp ${S}/start.elf ${DEPLOYDIR}/
 }
+
+addtask deploy before do_build after do_compile
