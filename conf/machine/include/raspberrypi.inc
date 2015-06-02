@@ -12,7 +12,7 @@ IMAGE_FSTYPES += "tar.bz2"
 
 SERIAL_CONSOLE = "115200 ttyAMA0"
 
-KERNEL_IMAGETYPE = "uImage"
+KERNEL_IMAGETYPE = "zImage"
 KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
 UBOOT_SUFFIX = "bin"
@@ -37,4 +37,4 @@ MACHINE_FEATURES = " \
     "
 
 # FIXME: devtree files
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} uImage bootcode.bin start.elf config.txt"
+IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} zImage bootcode.bin start.elf config.txt"
