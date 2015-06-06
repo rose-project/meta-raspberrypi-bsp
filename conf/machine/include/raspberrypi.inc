@@ -19,7 +19,7 @@ UBOOT_SUFFIX = "bin"
 UBOOT_ENTRYPOINT = "0x80008000"
 UBOOT_LOADADDRESS = "0x80008000"
 
-PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 
 PREFERRED_VERSION_linux-custom = "v4.0.4"
