@@ -1,15 +1,15 @@
 # Raspberry Pi firmware blobs
 
 SRC_URI = " \
-    https://github.com/raspberrypi/firmware/raw/master/boot/bootcode.bin;name=bootcode.bin \
-    https://github.com/raspberrypi/firmware/raw/master/boot/start.elf;name=start.elf \
+    https://github.com/raspberrypi/firmware/raw/5c1848771795600170250a0ea1ff4a509e20859e/boot/bootcode.bin;name=bootcode.bin \
+    https://github.com/raspberrypi/firmware/raw/5c1848771795600170250a0ea1ff4a509e20859e/boot/start.elf;name=start.elf \
     https://github.com/raspberrypi/firmware/raw/master/boot/LICENCE.broadcom;name=license \
     "
 
 SRC_URI[bootcode.bin.md5sum] = "06e8e69c96e73bbf66403e1229d3f151"
 SRC_URI[bootcode.bin.sha256sum] = "6149c038b67e22c826bcdc28a7b59b91bded089eddf506c25df96af88e7846f4"
-SRC_URI[start.elf.md5sum] = "13b80800872c01298fa6281b01773f56"
-SRC_URI[start.elf.sha256sum] = "7cd392b32d2bfdf6c46b65a62f3fc5771e88fa35205f98e109ef1bac953a8177"
+SRC_URI[start.elf.md5sum] = "fe63c1104652b0c6d660267d74a3e16a"
+SRC_URI[start.elf.sha256sum] = "d1b9e6921ccad3c82fde6044896a3def42b33398062350fa7a1872e49b5558a7"
 SRC_URI[license.md5sum] = "e86e693d19572ee64cc8b17fb062faa9"
 SRC_URI[license.sha256sum] = "f60358cc6ed4b7c49f0c5faf1cd8f604705c2e3fd25c0048ea3243596795f789"
 
