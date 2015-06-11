@@ -1,9 +1,11 @@
+# u-boot mainline for the Raspberry Pi
 require recipes-bsp/u-boot/u-boot.inc
 
 DEPENDS += "dtc-native"
 
-# This revision corresponds to the tag "v2015.04"
-# We use the revision in order to avoid having to fetch it from the repo during parse
-SRCREV = "f33cdaa4c3da4a8fd35aa2f9a3172f31cc887b35"
+SRC_URI = "git://www.denx.de/git/u-boot.git;protocol=git;tag=${PV}"
+SRC_URI_append_raspberrypi1 = " file://0001-Environment-for-Raspberry-Pi-1.patch"
+SRC_URI_append_raspberrypi2 = " file://0001-Environment-for-Raspberry-Pi-2.patch"
 
-PV = "v2015.04+git${SRCPV}"
+PR = "r1"
+PV = "v2015.04"
