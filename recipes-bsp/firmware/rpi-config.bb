@@ -16,7 +16,7 @@ S = "${WORKDIR}"
 PR = "r1"
 
 do_deploy() {
-    cp ${S}/config.txt ${DEPLOYDIR}
+    install -m 0644 config.txt ${DEPLOYDIR}
 }
 
 addtask deploy before do_build after do_compile

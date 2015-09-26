@@ -1,1 +1,2 @@
 kernel=u-boot.bin
+gpu_mem=128

@@ -1,1 +1,5 @@
-TODO
+Copyright Note
+
+This recipe reused parts of the meta-raspberrypi layer maintained by
+Andrei Gherzan <andrei at gherzan.ro>.
+git://git.yoctoproject.org/meta-raspberrypi
