@@ -10,8 +10,8 @@ SRC_URI[bootcode.bin.md5sum] = "06e8e69c96e73bbf66403e1229d3f151"
 SRC_URI[bootcode.bin.sha256sum] = "6149c038b67e22c826bcdc28a7b59b91bded089eddf506c25df96af88e7846f4"
 SRC_URI[start.elf.md5sum] = "fe63c1104652b0c6d660267d74a3e16a"
 SRC_URI[start.elf.sha256sum] = "d1b9e6921ccad3c82fde6044896a3def42b33398062350fa7a1872e49b5558a7"
-SRC_URI[license.md5sum] = "e86e693d19572ee64cc8b17fb062faa9"
-SRC_URI[license.sha256sum] = "f60358cc6ed4b7c49f0c5faf1cd8f604705c2e3fd25c0048ea3243596795f789"
+SRC_URI[license.md5sum] = "4a4d169737c0786fb9482bb6d30401d1"
+SRC_URI[license.sha256sum] = "ba76edfc10a248166d965b8eaf320771c44f4f432d4fce2fd31fd272e7038add"
 
 PV = "20150530"
 
@@ -23,7 +23,7 @@ RDEPENDS_${PN} = "rpi-config"
 DESCRIPTION = "Closed source binary files to help boot the ARM on the BCM2835."
 LICENSE = "Proprietary"
 
-LIC_FILES_CHKSUM = "file://LICENCE.broadcom;md5=e86e693d19572ee64cc8b17fb062faa9"
+LIC_FILES_CHKSUM = "file://LICENCE.broadcom;md5=4a4d169737c0786fb9482bb6d30401d1"
 
 COMPATIBLE_MACHINE = "raspberrypi(1|2)"
 
