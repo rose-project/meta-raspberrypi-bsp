@@ -1,17 +1,17 @@
-From 08a471d3a13926e4266816941d50cd221ebf6c3f Mon Sep 17 00:00:00 2001
+From 473fe63f8b446cc24798fec798f6ab0d5f3f436d Mon Sep 17 00:00:00 2001
 From: Ferocity <christian.fries123@gmail.com>
-Date: Tue, 17 Nov 2015 15:28:38 +0100
-Subject: [PATCH] bootargs
+Date: Tue, 17 Nov 2015 19:01:47 +0100
+Subject: [PATCH] rpi-environment
 
 ---
- include/configs/rpi-common.h | 30 +++++++++++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
+ include/configs/rpi-common.h | 31 ++++++++++++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
 
 diff --git a/include/configs/rpi-common.h b/include/configs/rpi-common.h
-index 0b8c681..448b67e 100644
+index 0b8c681..a6fbce6 100644
 --- a/include/configs/rpi-common.h
 +++ b/include/configs/rpi-common.h
-@@ -179,7 +179,35 @@
+@@ -179,7 +179,36 @@
  #define CONFIG_EXTRA_ENV_SETTINGS \
  	ENV_DEVICE_SETTINGS \
  	ENV_MEM_LAYOUT_SETTINGS \
@@ -23,9 +23,9 @@ index 0b8c681..448b67e 100644
 +	"mmcpart=1\0" \
 +	"mmcroot=/dev/mmcblk0p2 rw\0" \
 +	"mmcrootfstype=ext4 rootwait noinitrd\0" \
-+	"mmcargs=setenv bootargs earlyprintk console=tty0 console=ttyAMA0" \
-+			"root=${mmcroot}" \
-+		   "rootfstype=${mmcrootfstype}\0" \
++	"mmcargs=setenv bootargs \"earlyprintk console=tty0 console=ttyAMA0 " \
++			"root=${mmcroot} " \
++		   "rootfstype=${mmcrootfstype}\"\0" \
 +	"loadbootscript=" \
 +		"fatload mmc ${mmcdev}:${mmcpart} ${loadaddr} ${script};\0" \
 +	"bootscript=echo Running bootscript from mmc ...; " \
@@ -35,14 +35,15 @@ index 0b8c681..448b67e 100644
 +	"mmcboot=echo Booting from mmc ...; " \
 +				"run mmcargs; " \
 +				"bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
-+	"netargs=setenv bootargs earlyprintk console=tty1 console=ttyAMA0" \
-+			"root=/dev/nfs" \
-+		   "rw nfsroot=${serverip}:${nfsroot}\0" \
++	"netargs=setenv bootargs \"earlyprintk console=tty0 console=ttyAMA0 " \
++			"root=/dev/nfs " \
++		   "nfsroot=${serverip}:${nfsroot} rw " \
++			"ip=${ipaddr}::${serverip}:255.255.255.0:rpi:eth0:off\"\0" \
 +	"netboot=echo Booting from net ...; " \
 +		"usb start; "\
 +		"run netargs; " \
-+		"tftp ${kernel_addr_r} ${zimage};" \
-+		"tftp ${fdt_addr_r} ${fdt_file};" \
++		"tftp ${kernel_addr_r} ${zimage}; " \
++		"tftp ${fdt_addr_r} ${fdt_file}; " \
 +		"bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
 +	"bootcmd=run loadzimage; run loadfdt; run mmcboot;\0"
  

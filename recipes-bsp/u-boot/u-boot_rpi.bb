@@ -5,5 +5,5 @@ include u-boot-rpi.inc
 SRCREV = "e490ad25eb3dc4f075ed33b4b00b1f97071fcf3d"
 #SRCBRANCH = "rpi"
 
-SRC_URI+="file://0001-bootargs.patch"
+SRC_URI+="file://0001-rpi-environment.patch"
 
