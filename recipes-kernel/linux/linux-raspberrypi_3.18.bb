@@ -21,3 +21,13 @@ PR = "r0"
 PV = "${LINUX_VERSION}+git${SRCPV}"
 
 COMPATIBLE_MACHINE_raspberrypi-bsp = "raspberrypi1 raspberrypi2"
+
+do_deploy_append() {
+	if test -n "${KERNEL_DEVICETREE}"; then
+		for DTB in ${KERNEL_DEVICETREE}; do
+			cd ${DEPLOYDIR}
+			ln -sf ${DTB_NAME}.dtb zImage.dtb
+			cd -
+		done
+	fi
+}
