@@ -8,6 +8,9 @@ MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
 
 EXTRA_IMAGEDEPENDS += "u-boot bcm-rpi-firmware"
 
+# Wic dependencies to create MBR partitions
+EXTRA_IMAGEDEPENDS += "dosfstools-native mtools-native parted-native"
+
 IMAGE_FSTYPES += "tar.bz2"
 
 SERIAL_CONSOLE = "115200 ttyAMA0"
