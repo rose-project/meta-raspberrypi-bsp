@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=956139f0411412ea77671fedb9915d38"
 
 S = "${WORKDIR}"
 
-inherit deploy
+inherit deploy kernel-uimage
 
 DEPENDS = "u-boot-mkimage-native"
 RDEPENDS_${PN} = "rpi-config"
