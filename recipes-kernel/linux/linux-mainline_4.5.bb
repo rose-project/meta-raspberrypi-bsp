@@ -58,6 +58,7 @@ KRANCH="linux-${SRCPV}.y"
 SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;branch=${KBRANCH};name=machine \
 	file://bcm2835.cfg \
+	file://neon.cfg \
 	file://vc4.cfg \
 	"
 
@@ -85,14 +86,3 @@ KERNEL_DEVICETREE_raspberrypi1 = "\
 KERNEL_DEVICETREE_raspberrypi2 = "\
 	bcm2836-rpi-2-b.dtb \
 	"
-
-do_deploy_append() {
-	if test -n "${KERNEL_DEVICETREE}"; then
-		for DTB in ${KERNEL_DEVICETREE}; do
-			cd ${DEPLOYDIR}
-			ln -sf ${DTB_NAME}.dtb zImage.dtb
-			cd -
-		done
-	fi
-}
-
