@@ -58,6 +58,7 @@ KRANCH="linux-${SRCPV}.y"
 SRC_URI = " \
 	git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;protocol=git;nocheckout=1;branch=${KBRANCH};name=machine \
 	file://bcm2835.cfg \
+	file://neon.cfg \
 	file://vc4.cfg \
 	"
 
