@@ -6,7 +6,7 @@
 
 MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
 
-EXTRA_IMAGEDEPENDS += "u-boot bcm-rpi-firmware"
+EXTRA_IMAGEDEPENDS += "u-boot u-boot-env bcm-rpi-firmware"
 
 # Wic dependencies to create MBR partitions
 EXTRA_IMAGEDEPENDS += "dosfstools-native mtools-native parted-native"
@@ -22,7 +22,8 @@ UBOOT_SUFFIX = "bin"
 UBOOT_ENTRYPOINT = "0x80008000"
 UBOOT_LOADADDRESS = "0x80008000"
 
-PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
+PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
+PREFERRED_VERSION_virtual/kernel = "4.5%"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
 PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
@@ -30,7 +31,6 @@ PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
 PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
 PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
-PREFERRED_VERSION_linux-custom = "v4.0.4"
 
 MACHINE_FEATURES = " \
     usbgadget \
@@ -44,5 +44,4 @@ MACHINE_FEATURES = " \
     sdio \
     "
 
-# FIXME: devtree files
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} zImage bootcode.bin start.elf config.txt"
+IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} boot.scr ${KERNEL_IMAGETYPE} bootcode.bin start.elf config.txt"
