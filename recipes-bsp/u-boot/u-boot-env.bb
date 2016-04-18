@@ -22,7 +22,7 @@ PR = "r1"
 
 
 do_uboot_mkimage() {
-    uboot-mkimage -A arm -O linux -T script -C none -d ${S}/${MACHINE}-boot.txt boot.scr
+    uboot-mkimage -T script -C none -n boot.scr -d ${S}/${MACHINE}-boot.txt boot.scr
 }
 
 do_deploy() {
