@@ -86,14 +86,3 @@ KERNEL_DEVICETREE_raspberrypi1 = "\
 KERNEL_DEVICETREE_raspberrypi2 = "\
 	bcm2836-rpi-2-b.dtb \
 	"
-
-do_deploy_append() {
-	if test -n "${KERNEL_DEVICETREE}"; then
-		for DTB in ${KERNEL_DEVICETREE}; do
-			cd ${DEPLOYDIR}
-			ln -sf ${DTB_NAME}.dtb zImage.dtb
-			cd -
-		done
-	fi
-}
-
