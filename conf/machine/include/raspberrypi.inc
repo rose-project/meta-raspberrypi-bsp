@@ -1,8 +1,9 @@
 #@TYPE: Machine
 #@NAME: Raspberry Pi common config
 
-#@DESCRIPTION: Common machine configuration for the Raspberry Pi 1 and 2
+#@DESCRIPTION: Common machine configuration for the Raspberry Pi 1, 2 and 3
 
+MACHINE_OVERRIDES = "raspberrypi:${MACHINE}"
 
 MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
 

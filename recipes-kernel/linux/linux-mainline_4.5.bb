@@ -60,6 +60,7 @@ SRC_URI = " \
 	file://bcm2835.cfg \
 	file://neon.cfg \
 	file://vc4.cfg \
+	file://0001-Activate-VC4-GPU.patch \
 	"
 
 LINUX_VERSION ?= "4.5"

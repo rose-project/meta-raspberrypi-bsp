@@ -1,0 +1,101 @@
+From 6a056c15edba203ce8b0ea26fd87a76a068d0a35 Mon Sep 17 00:00:00 2001
+From: Josef Raschen <josef@raschen.org>
+Date: Sat, 7 May 2016 20:39:34 +0200
+Subject: [PATCH] Activate VC4 GPU.
+
+---
+ arch/arm/boot/dts/bcm2836-rpi-2-b.dts | 59 +++++++++++++++++++++++++++++++++++
+ arch/arm/boot/dts/bcm283x.dtsi        |  2 +-
+ 2 files changed, 60 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
+index ff94666..a7a8658 100644
+--- a/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
++++ b/arch/arm/boot/dts/bcm2836-rpi-2-b.dts
+@@ -1,4 +1,7 @@
+ /dts-v1/;
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/clock/bcm2835.h>
++#include <dt-bindings/clock/bcm2835-aux.h>
+ #include "bcm2836.dtsi"
+ #include "bcm2835-rpi.dtsi"
+ 
+@@ -22,6 +25,62 @@
+ 			linux,default-trigger = "default-on";
+ 		};
+ 	};
++
++	soc {
++		i2c2: i2c@7e805000 {
++			status = "okay";
++		};
++
++        clocks: cprman@7e101000 {
++			status = "okay";
++		};
++
++		pixelvalve@7e206000 {
++			compatible = "brcm,bcm2835-pixelvalve0";
++			reg = <0x7e206000 0x100>;
++			interrupts = <2 13>; /* pwa0 */
++		};
++		
++		pixelvalve@7e207000 {
++			compatible = "brcm,bcm2835-pixelvalve1";
++			reg = <0x7e207000 0x100>;
++			interrupts = <2 14>; /* pwa1 */
++		};
++		
++		hvs@7e400000 {
++			compatible = "brcm,bcm2835-hvs";
++			reg = <0x7e400000 0x6000>;
++			interrupts = <2 1>;
++		};
++		
++		pixelvalve@7e807000 {
++			compatible = "brcm,bcm2835-pixelvalve2";
++			reg = <0x7e807000 0x100>;
++			interrupts = <2 10>; /* pixelvalve */
++		};
++
++		hdmi: hdmi@7e902000 {
++			compatible = "brcm,bcm2835-hdmi";
++			reg = <0x7e902000 0x600>,
++			<0x7e808000 0x100>;
++			interrupts = <2 8>, <2 9>;
++			ddc = <&i2c2>;
++			hpd-gpios = <&gpio 46 GPIO_ACTIVE_HIGH>;
++			clocks = <&clocks BCM2835_PLLH_PIX>,
++			<&clocks BCM2835_CLOCK_HSM>;
++			clock-names = "pixel", "hdmi";
++		};
++		
++		v3d: v3d@7ec00000 {
++			compatible = "brcm,vc4-v3d";
++			reg = <0x7ec00000 0x1000>;
++			interrupts = <1 10>;
++		};
++		
++		vc4: gpu@7e4c0000 {
++			compatible = "brcm,bcm2835-vc4";
++		};
++	};
+ };
+ 
+ &gpio {
+diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
+index 971e741..b51153c 100644
+--- a/arch/arm/boot/dts/bcm283x.dtsi
++++ b/arch/arm/boot/dts/bcm283x.dtsi
+@@ -13,7 +13,7 @@
+ 	interrupt-parent = <&intc>;
+ 
+ 	chosen {
+-		bootargs = "earlyprintk console=ttyAMA0";
++		bootargs = "earlyprintk console=ttyAMA0 cma=128M@128M";
+ 	};
+ 
+ 	soc {
+-- 
+2.7.4
+
