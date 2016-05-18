@@ -26,7 +26,7 @@ do_uboot_mkimage() {
 }
 
 do_deploy() {
-    install -m 0644 boot.scr ${DEPLOYDIR}/boot.scr
+    install boot.scr ${DEPLOYDIR}/boot.scr
 }
 
 addtask uboot_mkimage before do_install after do_compile
