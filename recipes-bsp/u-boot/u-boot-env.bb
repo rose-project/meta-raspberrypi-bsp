@@ -21,13 +21,12 @@ COMPATIBLE_MACHINE = "raspberrypi(1|2|3)"
 PR = "r1"
 
 
-do_uboot_mkimage() {
+do_compile() {
     uboot-mkimage -T script -C none -n boot.scr -d ${S}/${MACHINE}-boot.txt boot.scr
 }
 
 do_deploy() {
-    install boot.scr ${DEPLOYDIR}/boot.scr
+    install boot.scr ${DEPLOY_DIR_IMAGE}/boot.scr
 }
 
-addtask uboot_mkimage before do_install after do_compile
 addtask deploy before do_build after do_compile
