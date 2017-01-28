@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=956139f0411412ea77671fedb9915d38"
 
 S = "${WORKDIR}"
 
-inherit deploy kernel-uimage
+inherit deploy
 
 DEPENDS = "u-boot-mkimage-native"
 RDEPENDS_${PN} = "rpi-config"
@@ -20,14 +20,14 @@ COMPATIBLE_MACHINE = "raspberrypi(1|2)"
 
 PR = "r1"
 
-
-do_uboot_mkimage() {
-    uboot-mkimage -T script -C none -n boot.scr -d ${S}/${MACHINE}-boot.txt boot.scr
+do_compile() {
+    uboot-mkimage -T script -C none -n boot.scr -d ${S}/${MACHINE}-boot.txt ${WORKDIR}/boot.scr
 }
 
 do_deploy() {
-    install boot.scr ${DEPLOYDIR}/boot.scr
+    install -d ${DEPLOYDIR}
+    install ${WORKDIR}/boot.scr ${DEPLOYDIR}/boot.scr
 }
 
-addtask uboot_mkimage before do_install after do_compile
-addtask deploy before do_build after do_compile
+addtask deploy before do_package after do_install
+do_deploy[dirs] += "${DEPLOYDIR}"
