@@ -16,7 +16,7 @@ DEPENDS = "u-boot-mkimage-native"
 RDEPENDS_${PN} = "rpi-config"
 
 
-COMPATIBLE_MACHINE = "raspberrypi(1|2)"
+COMPATIBLE_MACHINE = "raspberrypi(1|2|3)"
 
 PR = "r1"
 
