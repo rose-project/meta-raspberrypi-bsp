@@ -1,48 +1,38 @@
 #@TYPE: Machine
 #@NAME: Raspberry Pi common config
+#@DESCRIPTION: Common machine configuration for the Raspberry Pi
 
-#@DESCRIPTION: Common machine configuration for the Raspberry Pi 1, 2 and 3
+MACHINEOVERRIDES = "raspberrypi:${MACHINE}:"
 
-MACHINE_OVERRIDES = "raspberrypi:${MACHINE}"
+IMAGE_FSTYPES ?= "tar.bz2 wic.bz2"
+WKS_FILE ?= "sdimage-raspberrypi.wks"
 
-MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
+MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
 
-EXTRA_IMAGEDEPENDS += "u-boot u-boot-env bcm-rpi-firmware"
-
-# Wic dependencies to create MBR partitions
-EXTRA_IMAGEDEPENDS += "dosfstools-native mtools-native parted-native"
+EXTRA_IMAGEDEPENDS += "u-boot u-boot-env rpi-firmware"
 
 IMAGE_FSTYPES += "tar.bz2"
 
-SERIAL_CONSOLE = "115200 ttyAMA0"
-
-KERNEL_IMAGETYPE = "zImage"
-KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
-
-UBOOT_SUFFIX = "bin"
-UBOOT_ENTRYPOINT = "0x80008000"
-UBOOT_LOADADDRESS = "0x80008000"
-
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
-PREFERRED_VERSION_virtual/kernel = "4.8%"
+PREFERRED_VERSION_virtual/kernel = "6.8%"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
-PREFERRED_PROVIDER_virtual/egl ?= "mesa"
-PREFERRED_PROVIDER_virtual/libgles2 ?= "mesa"
-PREFERRED_PROVIDER_virtual/libgl ?= "mesa"
-PREFERRED_PROVIDER_virtual/mesa ?= "mesa"
-PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
-
-MACHINE_FEATURES = " \
+MACHINE_FEATURES += " \
     usbgadget \
     usbhost \
-    keyboard \
     vfat \
     ext2 \
     alsa \
     bluetooth \
     wifi \
-    sdio \
-    "
+"
 
-IMAGE_BOOT_FILES ?= "u-boot.${UBOOT_SUFFIX} boot.scr ${KERNEL_IMAGETYPE} bootcode.bin start.elf config.txt"
+def get_dtb_files(d):
+    paths = d.getVar("KERNEL_DEVICETREE").split()
+    dtb_files = ""
+    for path in paths:
+        dtb_files += " " + path.split("/")[-1]
+    return dtb_files
+
+
+IMAGE_BOOT_FILES ?= "u-boot.bin boot.scr ${KERNEL_IMAGETYPE} ${@get_dtb_files(d)} bootcode.bin start.elf config.txt"

@@ -1,5 +1,4 @@
-Copyright Note
+Copyright Note 
 
-This recipe reused parts of the meta-raspberrypi layer maintained by
-Andrei Gherzan <andrei at gherzan.ro>.
-git://git.yoctoproject.org/meta-raspberrypi
+This recipe reuses parts of the meta-raspberrypi layer maintained by the Yocto Project
+https://git.yoctoproject.org/meta-raspberrypi
