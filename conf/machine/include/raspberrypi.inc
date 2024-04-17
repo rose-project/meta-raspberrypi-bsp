@@ -10,6 +10,13 @@ WKS_FILE ?= "sdimage-raspberrypi.wks"
 MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
 
 EXTRA_IMAGEDEPENDS += "u-boot u-boot-env rpi-firmware"
+do_image_wic[depends] += " \
+    virtual/kernel:do_deploy \
+    rpi-firmware:do_deploy \
+    u-boot:do_deploy \
+    u-boot-env:do_deploy \
+    "
+
 
 IMAGE_FSTYPES += "tar.bz2"
 
@@ -25,7 +32,7 @@ MACHINE_FEATURES += " \
     alsa \
     bluetooth \
     wifi \
-"
+    "
 
 def get_dtb_files(d):
     paths = d.getVar("KERNEL_DEVICETREE").split()
