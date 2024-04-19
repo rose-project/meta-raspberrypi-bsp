@@ -16,9 +16,14 @@ DEPENDS = "rpi-config"
 COMPATIBLE_MACHINE = "^raspberrypi.*"
 
 do_deploy() {
-    cp ${S}/boot/bootcode.bin ${DEPLOYDIR}/
-    cp ${S}/boot/start.elf ${DEPLOYDIR}/
-    cp ${S}/boot/LICENCE.broadcom ${DEPLOYDIR}/
+    FIRMWARE_DEPLOYDIR=${DEPLOYDIR}/firmware
+    mkdir ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/bootcode.bin ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/start.elf ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/fixup.dat ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/start4.elf ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/fixup4.dat ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/LICENCE.broadcom ${FIRMWARE_DEPLOYDIR}
 }
 
 addtask deploy before do_build after do_compile

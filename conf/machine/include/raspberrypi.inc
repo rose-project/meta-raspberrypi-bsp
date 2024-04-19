@@ -42,4 +42,4 @@ def get_dtb_files(d):
     return dtb_files
 
 
-IMAGE_BOOT_FILES ?= "u-boot.bin boot.scr ${KERNEL_IMAGETYPE} ${@get_dtb_files(d)} bootcode.bin start.elf config.txt"
+IMAGE_BOOT_FILES ?= "u-boot.bin boot.scr ${KERNEL_IMAGETYPE} ${@get_dtb_files(d)} firmware/* config.txt"
