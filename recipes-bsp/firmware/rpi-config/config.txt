@@ -1,2 +1,3 @@
+arm_64bit=1
 kernel=u-boot.bin
-gpu_mem=128
+enable_uart=1
