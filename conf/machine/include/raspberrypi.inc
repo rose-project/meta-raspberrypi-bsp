@@ -24,6 +24,8 @@ PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
 PREFERRED_VERSION_virtual/kernel = "6.8%"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 
+UBOOT_MACHINE = "${MACHINE}_defconfig"
+
 MACHINE_FEATURES += " \
     usbgadget \
     usbhost \
