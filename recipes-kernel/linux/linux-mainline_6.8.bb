@@ -11,7 +11,6 @@ SRCREV = "b95f2066a910ace64787dc4f3e1dfcb2e7e71718"
 SRC_URI = " \
     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git;protocol=https;branch=${LINUX_BRANCH} \
     file://defconfig \
-    file://rpi-display.cfg \
     "
 
 S = "${WORKDIR}/git"
