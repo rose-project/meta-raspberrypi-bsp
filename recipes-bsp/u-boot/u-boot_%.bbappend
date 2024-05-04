@@ -4,4 +4,4 @@ SRC_URI:append = " \
     file://${MACHINE}_defconfig;subdir=git/configs \
 "
 
-COMPATIBLE_MACHINE:raspberrypi5 = "(^raspberrypi4$)"
+COMPATIBLE_MACHINE:raspberrypi4 = "(^raspberrypi4$)"
