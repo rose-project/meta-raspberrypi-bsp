@@ -13,8 +13,15 @@ S = "${WORKDIR}"
 
 PR = "r1"
 
+export ENABLE_JTAG = "${@bb.utils.contains("MACHINE_FEATURES", "jtag", "1", "0", d)}"
+
 do_deploy() {
     install -m 0644 config.txt ${DEPLOYDIR}
+    cp ${S}/config.txt ${DEPLOYDIR}
+
+    if [ "$ENABLE_JTAG" = "1" ]; then
+        printf "enable_jtag_gpio=1\n" >> ${DEPLOYDIR}/config.txt
+    fi
 }
 
 addtask deploy after do_compile
