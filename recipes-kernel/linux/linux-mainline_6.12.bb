@@ -4,10 +4,10 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
 
 inherit kernel kernel-yocto
 
-LINUX_VERSION ?= "6.8.5"
-LINUX_BRANCH ?= "linux-6.8.y"
+LINUX_VERSION ?= "6.12.1"
+LINUX_BRANCH ?= "linux-6.12.y"
 
-SRCREV = "b95f2066a910ace64787dc4f3e1dfcb2e7e71718"
+SRCREV = "d390303b28dabbb91b2d32016a4f72da478733b9"
 SRC_URI = " \
     git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git;protocol=https;branch=${LINUX_BRANCH} \
     file://defconfig \
