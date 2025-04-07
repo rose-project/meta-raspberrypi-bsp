@@ -2,9 +2,8 @@ DESCRIPTION = "Closed source binary files to help boot the ARM on the BCM2835."
 LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://boot/LICENCE.broadcom;md5=c403841ff2837657b2ed8e5bb474ac8d"
 
-PV = "1.20240926"
 SRC_URI = "https://github.com/raspberrypi/firmware/releases/download/${PV}/raspi-firmware_${PV}.orig.tar.xz;name=firmware"
-SRC_URI[firmware.sha256sum] = "c84328b6a75b48caa4f45553d6418d02dd151ac2be32c7c2e3c02bd3bffd6646"
+SRC_URI[firmware.sha256sum] = "f697079cd15389c0d8650283eb911c53a64b22550138704eb50e1145e8330b03"
 
 inherit deploy
 
