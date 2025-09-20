@@ -7,7 +7,10 @@ MACHINEOVERRIDES = "raspberrypi:${MACHINE}:"
 IMAGE_FSTYPES ?= "tar.bz2 wic.bz2"
 WKS_FILE ?= "sdimage-raspberrypi.wks"
 
-MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
+MACHINE_EXTRA_RRECOMMENDS += "\
+    kernel-modules \
+    linux-firmware \
+    "
 
 EXTRA_IMAGEDEPENDS += "u-boot u-boot-env rpi-firmware"
 do_image_wic[depends] += " \
@@ -21,7 +24,7 @@ do_image_wic[depends] += " \
 IMAGE_FSTYPES += "tar.bz2"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
-PREFERRED_VERSION_linux-mainline = "6.14%"
+PREFERRED_VERSION_linux-mainline ?= "6.17%"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
 
 UBOOT_MACHINE = "${MACHINE}_defconfig"

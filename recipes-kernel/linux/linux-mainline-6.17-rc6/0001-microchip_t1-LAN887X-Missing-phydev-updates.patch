@@ -1,0 +1,57 @@
+From db40fb1e62f2efc44682826f89d735fd6f2530a3 Mon Sep 17 00:00:00 2001
+From: Josef Raschen <josef@raschen.org>
+Date: Sat, 20 Sep 2025 10:49:45 +0200
+Subject: [PATCH] [microchip_t1] LAN887X: Missing phydev updates.
+
+- Initialize speed and duplex with proper defaults.
+- Update master_slave_get/state after changes.
+---
+ drivers/net/phy/microchip_t1.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/phy/microchip_t1.c b/drivers/net/phy/microchip_t1.c
+index 62b36a318100..5fcbfa730910 100644
+--- a/drivers/net/phy/microchip_t1.c
++++ b/drivers/net/phy/microchip_t1.c
+@@ -1319,7 +1319,12 @@ static int lan887x_phy_init(struct phy_device *phydev)
+ 		return ret;
+ 
+ 	/* PHY interface setup */
+-	return lan887x_config_phy_interface(phydev);
++	ret = lan887x_config_phy_interface(phydev);
++	if (ret < 0)
++		return ret;
++
++	/* Make configuration visible for ethtool. */
++	return genphy_c45_pma_baset1_read_master_slave(phydev);
+ }
+ 
+ static int lan887x_phy_config(struct phy_device *phydev,
+@@ -1489,7 +1494,12 @@ static int lan887x_config_aneg(struct phy_device *phydev)
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	return lan887x_phy_reconfig(phydev);
++	ret = lan887x_phy_reconfig(phydev);
++	if (ret < 0)
++		return ret;
++
++	/* Make configuration changes visible for ethtool. */
++	return genphy_c45_pma_baset1_read_master_slave(phydev);
+ }
+ 
+ static int lan887x_probe(struct phy_device *phydev)
+@@ -1503,6 +1513,10 @@ static int lan887x_probe(struct phy_device *phydev)
+ 	priv->init_done = false;
+ 	phydev->priv = priv;
+ 
++	/* Set default link parameters. */
++	phydev->duplex = DUPLEX_FULL;
++	phydev->speed = SPEED_1000;
++
+ 	return lan887x_phy_setup(phydev);
+ }
+ 
+-- 
+2.43.0
+
