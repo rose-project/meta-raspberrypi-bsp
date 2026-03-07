@@ -3,7 +3,7 @@ LICENSE = "Proprietary"
 LIC_FILES_CHKSUM = "file://boot/LICENCE.broadcom;md5=c403841ff2837657b2ed8e5bb474ac8d"
 
 SRC_URI = "https://github.com/raspberrypi/firmware/releases/download/${PV}/raspi-firmware_${PV}.orig.tar.xz;name=firmware"
-SRC_URI[firmware.sha256sum] = "25bcff5992c6d7057de4a5c6834b7f90b7136fe12aa63fa32793329bf74a95bf"
+SRC_URI[firmware.sha256sum] = "545b5f8a624b98222c7b4ef4244ac219845993aba15e49d5440b21ccd722340e"
 
 inherit deploy
 
