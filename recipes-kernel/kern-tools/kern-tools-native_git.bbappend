@@ -1,0 +1,2 @@
+# since kernel 6.18 some changes are needed
+SRCREV = "f589e1df23251d8319063da0a61c1016b2a0bf85"
