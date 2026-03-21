@@ -6,7 +6,7 @@ COMPATIBLE_MACHINE = "^raspberrypi.*"
 
 inherit deploy
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 PR = "r3"
 
@@ -41,9 +41,9 @@ def rpi_console_arg(d):
 RPI_CONSOLE_ARG = "${@rpi_console_arg(d)}"
 
 do_deploy() {
-    rm -f ${WORKDIR}/config.txt
-    rm -f ${WORKDIR}/cmdline.txt
-    echo "arm_64bit=1" >> ${WORKDIR}/config.txt
+    rm -f config.txt
+    rm -f cmdline.txt
+    echo "arm_64bit=1" >> config.txt
     bootloader="${BOOTLOADER_PROVIDER}"
     # Match the selected bootloader so the firmware loads the right binary
     case "${bootloader}" in
@@ -54,9 +54,9 @@ do_deploy() {
             kernel_target="${KERNEL_IMAGETYPE}"
             ;;
     esac
-    echo "kernel=${kernel_target}" >> ${WORKDIR}/config.txt
-    echo "device_tree=${SELECTED_DEVICETREE}" >> ${WORKDIR}/config.txt
-    echo "enable_uart=1" >> ${WORKDIR}/config.txt
+    echo "kernel=${kernel_target}" >> config.txt
+    echo "device_tree=${SELECTED_DEVICETREE}" >> config.txt
+    echo "enable_uart=1" >> config.txt
 
     cmdline="root=${RPI_CMDLINE_ROOT} rootfstype=${RPI_CMDLINE_ROOT_FSTYPE}"
     if [ -n "${RPI_CMDLINE_EXTRA}" ]; then
@@ -66,7 +66,7 @@ do_deploy() {
         cmdline="${RPI_CONSOLE_ARG} ${cmdline}"
     fi
 
-    echo "${cmdline}" > ${WORKDIR}/cmdline.txt
+    echo "${cmdline}" > cmdline.txt
 
     install -m 0644 config.txt ${DEPLOYDIR}
     install -m 0644 cmdline.txt ${DEPLOYDIR}
