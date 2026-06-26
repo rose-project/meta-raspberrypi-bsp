@@ -12,12 +12,11 @@ MACHINE_EXTRA_RRECOMMENDS += "\
     linux-firmware \
     "
 
-EXTRA_IMAGEDEPENDS += "u-boot u-boot-env rpi-firmware"
+EXTRA_IMAGEDEPENDS += "u-boot rpi-firmware"
 do_image_wic[depends] += " \
     virtual/kernel:do_deploy \
     rpi-firmware:do_deploy \
     u-boot:do_deploy \
-    u-boot-env:do_deploy \
     "
 
 
