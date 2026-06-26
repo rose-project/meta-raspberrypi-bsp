@@ -16,12 +16,12 @@ S = "${UNPACKDIR}/raspi-firmware-${PV}"
 do_deploy() {
     FIRMWARE_DEPLOYDIR=${DEPLOYDIR}/firmware
     mkdir ${FIRMWARE_DEPLOYDIR}
-    cp boot/bootcode.bin ${FIRMWARE_DEPLOYDIR}
-    cp boot/start.elf ${FIRMWARE_DEPLOYDIR}
-    cp boot/fixup.dat ${FIRMWARE_DEPLOYDIR}
-    cp boot/start4.elf ${FIRMWARE_DEPLOYDIR}
-    cp boot/fixup4.dat ${FIRMWARE_DEPLOYDIR}
-    cp boot/LICENCE.broadcom ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/bootcode.bin ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/start.elf ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/fixup.dat ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/start4.elf ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/fixup4.dat ${FIRMWARE_DEPLOYDIR}
+    cp ${S}/boot/LICENCE.broadcom ${FIRMWARE_DEPLOYDIR}
 }
 
 addtask deploy before do_build after do_compile
