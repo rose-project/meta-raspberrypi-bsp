@@ -9,7 +9,7 @@ WKS_FILE ?= "sdimage-${MACHINE}.wks"
 
 MACHINE_EXTRA_RRECOMMENDS += "\
     kernel-modules \
-    linux-firmware \
+    linux-firmware-bcm43455 \
     "
 
 EXTRA_IMAGEDEPENDS += "u-boot rpi-firmware"
@@ -23,7 +23,7 @@ do_image_wic[depends] += " \
 IMAGE_FSTYPES += "tar.bz2"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
-PREFERRED_VERSION_linux-mainline ?= "6.19%"
+PREFERRED_VERSION_linux-mainline ?= "7.1%"
 PREFERRED_PROVIDER_virtual/bootloader ??= "u-boot"
 
 UBOOT_MACHINE = "${MACHINE}_defconfig"
