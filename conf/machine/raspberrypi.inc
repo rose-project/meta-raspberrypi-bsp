@@ -23,7 +23,7 @@ do_image_wic[depends] += " \
 IMAGE_FSTYPES += "tar.bz2"
 
 PREFERRED_PROVIDER_virtual/kernel ?= "linux-mainline"
-PREFERRED_VERSION_linux-mainline ?= "7.1%"
+PREFERRED_VERSION_linux-mainline ?= "7.2%"
 PREFERRED_PROVIDER_virtual/bootloader ??= "u-boot"
 
 UBOOT_MACHINE = "${MACHINE}_defconfig"
